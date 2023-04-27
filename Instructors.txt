@@ -1,0 +1,34 @@
+Name: Olga
+Surname: Sabanska
+Age: 99
+Work Experience: 77
+ 
+Name: Igors
+Surname: Litvjakovs
+Age: 54
+Work Experience: 7
+ 
+Name: Jānis
+Surname: Kirbis
+Age: 18
+Work Experience: 0
+ 
+Name: Brunō
+Surname: Brūnis
+Age: 19
+Work Experience: 1
+ 
+Name: Jānis
+Surname: Āboliņš
+Age: 19
+Work Experience: 5
+ 
+Name: Oļa
+Surname: Sergejevna
+Age: 46
+Work Experience: 22
+
+Name: Gļeps
+Surname: Dima
+Age: 19
+Work Experience: 99
