@@ -52,9 +52,11 @@ What type of data this will be?
                 Instructor.inputInstructor()
                 
         elif(userChoise == 2):
-            print("Work in progress!")
+            Instructor.printInstructors()
+        
         elif(userChoise == 3):
-            print("Work in progress!")
+            Instructor.deleteInstructor()
+                
         elif(userChoise == 4):
             print("Work in progress!")
         elif(userChoise == 5):
