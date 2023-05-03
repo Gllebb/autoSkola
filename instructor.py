@@ -1,4 +1,5 @@
 import os
+import json
 
 
 class Instructor:
@@ -35,18 +36,28 @@ If you want to save that data, input (1), if not, input (2).
             print("Okey!")
     
     def saveInstructor(self):
-        filename = "Instructors.txt"
-        with open(filename, "a", encoding="utf-8") as file:
+        file = "Instructors.txt"
+        with open(file, "a", encoding="utf-8") as file:
             file.write(f"\nName: {self.name}\n")
             file.write(f"Surname: {self.surname}\n")
             file.write(f"Age: {self.age}\n")
             file.write(f"Work Experience: {self.workExp}\n")
             
-    def printInstructors(self):
-        print("Work in progress!")
+    def printInstructors():
+        os.system("CLS")
+        with open("Instructors.txt", "r", encoding="utf-8") as file:
+            data = file.read()
+            print(data)
+        input("Press Enter to continue...")
+        os.system("CLS")
     
     def deleteInstructor():
-        print("Work in progress!")
+        filename = "Instructors.txt"
+        with open(filename, "r+", encoding="utf-8") as file:
+            file.truncate(0)
+        print("Data was successfully deleted")
+        input("Press Enter to continue...")
+        os.system("CLS")
     
     def searchOrFilterInstructor():
         print("Work in progress!")
