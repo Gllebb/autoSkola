@@ -55,7 +55,12 @@ What type of data this will be?
             Instructor.printInstructors()
         
         elif(userChoise == 3):
-            Instructor.deleteInstructor()
+            userChoise = int(input('''
+1. Delete specific data
+2. Delete all the data
+------------------------------------------
+'''))
+            Instructor.deleteInstructor(userChoise)
                 
         elif(userChoise == 4):
             print("Work in progress!")
