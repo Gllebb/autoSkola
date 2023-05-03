@@ -51,13 +51,19 @@ If you want to save that data, input (1), if not, input (2).
         input("Press Enter to continue...")
         os.system("CLS")
     
-    def deleteInstructor():
+    def deleteInstructor(userChoise):
         filename = "Instructors.txt"
-        with open(filename, "r+", encoding="utf-8") as file:
-            file.truncate(0)
-        print("Data was successfully deleted")
-        input("Press Enter to continue...")
-        os.system("CLS")
+        if(userChoise == 1):
+            print("111")
+        elif(userChoise == 2):
+            filename = "Instructors.txt"
+            with open(filename, "r+", encoding="utf-8") as file:
+                file.truncate(0)
+            print("All the data was successfully deleted")
+            input("Press Enter to continue...")
+            os.system("CLS")
+        else:
+            print("error")
     
     def searchOrFilterInstructor():
         print("Work in progress!")
