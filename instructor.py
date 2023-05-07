@@ -50,20 +50,40 @@ If you want to save that data, input (1), if not, input (2).
             print(data)
         input("Press Enter to continue...")
         os.system("CLS")
-    
-    def deleteInstructor(userChoise):
-        filename = "Instructors.txt"
-        if(userChoise == 1):
-            print("111")
-        elif(userChoise == 2):
-            filename = "Instructors.txt"
-            with open(filename, "r+", encoding="utf-8") as file:
-                file.truncate(0)
-            print("All the data was successfully deleted")
-            input("Press Enter to continue...")
-            os.system("CLS")
-        else:
-            print("error")
+
+    def deleteInstructor(userChoice):
+        with open("Instructors.txt", "r+", encoding="utf-8") as filename:
+            data = filename.readlines()
+            if userChoice == 1:
+                os.system("CLS")
+
+                name = "Name: " + input("Enter the name: ")
+                surname = "Surname: " + input("Enter the surname: ")
+
+                for i in range(len(data)):
+                    if name in data[i] and surname in data[i+1]:
+                        found = True
+                        del data[i:i+5]
+                        filename.seek(0)
+                        filename.truncate()
+                        filename.writelines(data)
+                        print(f"Data for {name} {surname} deleted")
+                        break
+                else:
+                    print(f"No data found for {name} {surname}")
+                    
+                input("Press Enter to continue...")
+                os.system("CLS")
+
+            elif userChoice == 2:
+                filename.truncate(0)
+                print("All the data was successfully deleted")
+                input("Press Enter to continue...")
+                os.system("CLS")
+            else:
+                print("Error: Invalid choice")
+                input("Press Enter to continue...")
+                os.system("CLS")
     
     def searchOrFilterInstructor():
         print("Work in progress!")
