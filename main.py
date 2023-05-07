@@ -61,8 +61,15 @@ What type of data this will be?
 ------------------------------------------
 '''))
             Instructor.deleteInstructor(userChoise)
-                
         elif(userChoise == 4):
+            print('''
+What type of data you want to search?
+------------------------------------------
+1. About Instructors
+2. About Cars
+3. About Students
+''')
+            userChoise = int(input("Enter there: "))
             print("Work in progress!")
         elif(userChoise == 5):
             print("Work in progress!")
