@@ -15,7 +15,7 @@ Select one of the options:
 2. View data
 3. Delete data
 4. Search data
-5. Summary
+5. Maths
 6. Sort
 7. Exit
 ------------------------------------------
@@ -72,7 +72,9 @@ What type of data you want to search?
             userChoise = int(input("Enter there: "))
             print("Work in progress!")
         elif(userChoise == 5):
-            print("Work in progress!")
+
+            Instructor.doMathInstructor()
+
         elif(userChoise == 6):
             print("Work in progress!")
         elif(userChoise ==7):
