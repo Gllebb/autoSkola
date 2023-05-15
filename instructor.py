@@ -3,17 +3,19 @@ import json
 
 
 class Instructor:
-    def __init__(self, name, surname, age, workExp):
+    def __init__(self, name, surname, age, workExp, Our_workExp):
         self.name = name
         self.surname = surname
         self.age = age
         self.workExp = workExp
+        self.Our_workExp = Our_workExp
         
     def inputInstructor():
         name = input("Name: ")
         surname = input("Surname: ")
         age = int(input("Age: "))
         workExp = int(input("Work experience: "))
+        Our_workExp = int(input("Our School Work Experience: "))
         print(f'''
 ------------------------------------------
 If you want to save that data, input (1), if not, input (2).
@@ -29,30 +31,33 @@ If you want to save that data, input (1), if not, input (2).
                     print("Invalid input. Please enter a number between 1 and 2.")
         os.system("CLS")
         if(userChoice == 1):
-            instructor = Instructor(name, surname, age, workExp)
+            instructor = Instructor(name, surname, age, workExp, Our_workExp)
             instructor.saveInstructor()
             print("Data saved to file!")
         else:
             print("Okey!")
     
     def saveInstructor(self):
-        file = "Instructors.txt"
+        file = "D:\\HTML\\autoSkola-main\\Instructors.txt"
         with open(file, "a", encoding="utf-8") as file:
-            file.write(f"\nName: {self.name}\n")
+            file.write(f"\nName:{self.name}\n")
             file.write(f"Surname: {self.surname}\n")
             file.write(f"Age: {self.age}\n")
             file.write(f"Work Experience: {self.workExp}\n")
+            file.write(f"Our School Work Experience: {self.Our_workExp}\n")
+            file.write(f"-----------------------------")
+
             
     def printInstructors():
         os.system("CLS")
-        with open("Instructors.txt", "r", encoding="utf-8") as file:
+        with open("D:\\HTML\\autoSkola-main\\Instructors.txt", "r", encoding="utf-8") as file:
             data = file.read()
             print(data)
         input("Press Enter to continue...")
         os.system("CLS")
 
     def deleteInstructor(userChoice):
-        with open("Instructors.txt", "r+", encoding="utf-8") as filename:
+        with open("D:\\HTML\\autoSkola-main\\Instructors.txt", "r+", encoding="utf-8") as filename:
             data = filename.readlines()
             if userChoice == 1:
                 os.system("CLS")
@@ -63,7 +68,7 @@ If you want to save that data, input (1), if not, input (2).
                 for i in range(len(data)):
                     if name in data[i] and surname in data[i+1]:
                         found = True
-                        del data[i:i+5]
+                        del data[i:i+6]
                         filename.seek(0)
                         filename.truncate()
                         filename.writelines(data)
@@ -89,7 +94,22 @@ If you want to save that data, input (1), if not, input (2).
         print("Work in progress!")
         
     def doMathInstructor():
-        print("Work in progress!")
+        with open("D:\\HTML\\autoSkola-main\\Instructors.txt", 'r', encoding="utf8") as file:
+            lines = file.readlines()
+
+        print("Tik gadu visi šie cilvēki strādāja ipriekš mums")
+        print("-----------------------------------------------")
+        for i in range(0, len(lines), 6):
+            name = lines[i].split(': ')[1].strip()
+            surname = lines[i+1].split(': ')[1].strip()
+            work_experience = int(lines[i+3].split(': ')[1].strip())
+            school_experience = int(lines[i+4].split(': ')[1].strip())
+
+            difference = work_experience - school_experience
+            print(f"{name} {surname}: {difference} gadi")
         
+        print()
+        input("Press Enter to continue...")
+        os.system("CLS")
     def sortingInstructor():
-        print("Work in progress!")
+        print("fd")
