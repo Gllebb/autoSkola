@@ -2,33 +2,40 @@ Name: Olga
 Surname: Sabanska
 Age: 99
 Work Experience: 77
+Our School Work Experience: 5
  
 Name: Igors
 Surname: Litvjakovs
 Age: 54
 Work Experience: 7
+Our School Work Experience: 6
  
 Name: Jānis
 Surname: Kirbis
 Age: 18
 Work Experience: 0
+Our School Work Experience: 0
  
 Name: Brunō
 Surname: Brūnis
 Age: 19
 Work Experience: 1
+Our School Work Experience: 0
  
 Name: Jānis
 Surname: Āboliņš
 Age: 19
 Work Experience: 5
+Our School Work Experience: 2
  
 Name: Oļa
 Surname: Sergejevna
 Age: 46
 Work Experience: 22
+Our School Work Experience: 6
 
 Name: Gļeps
 Surname: Dima
 Age: 19
 Work Experience: 99
+Our School Work Experience: 40
