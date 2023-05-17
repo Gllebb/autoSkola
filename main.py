@@ -3,10 +3,12 @@ from car import *
 from instructor import *
 from student import *
 
-
+os.system("CLS")
 def MainMenu():
     while(True):
         print('''
+Driving school \"Splinter\"!
+------------------------------------------
 Main menu:
 ------------------------------------------
 Select one of the options:
@@ -15,11 +17,10 @@ Select one of the options:
 2. View data
 3. Delete data
 4. Search data
-5. Maths
+5. Do math
 6. Sort
 7. Exit
-------------------------------------------
-            ''')
+------------------------------------------''')
         while True:
             try:
                 userChoise = int(input("Input: "))
@@ -72,8 +73,12 @@ What type of data you want to search?
             userChoise = int(input("Enter there: "))
             print("Work in progress!")
         elif(userChoise == 5):
-
-            Instructor.doMathInstructor()
+            print('''
+1. Show Work expirience before applying to our job
+2. Show when Instructor applied to his first job
+3. Show amounth of years to his next anniversary''')
+            userChoise = int(input("Enter there: "))
+            Instructor.doMathInstructor(userChoise)
 
         elif(userChoise == 6):
             print("Work in progress!")
