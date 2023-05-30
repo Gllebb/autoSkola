@@ -20,17 +20,15 @@ class Instructor:
         print("Name can't contain digits")
       else:
         break
-    os.system("clear")
 
     while True:
       surname = input("Surname (At least 2 letters): ")
-      if len(name) < 2:
+      if len(surname) < 2:
         print("Surname can't be shorter than 2 letters")
-      elif any(letter.isdigit() for letter in name):
+      elif any(letter.isdigit() for letter in surname):
         print("Surname can't contain digits")
       else:
         break
-    os.system("clear")
 
     while True:
       try:
@@ -154,9 +152,6 @@ If you want to save that data, input (1), if not, input (2).
         else:
           print(f"No data found for ID {id_to_delete}")
 
-        input("Press Enter to continue...")
-        os.system("clear")
-
       elif userChoice3 == 3:
         name = "Name: " + input("Enter the name: ")
         surname = "Surname: " + input("Enter the surname: ")
@@ -172,9 +167,6 @@ If you want to save that data, input (1), if not, input (2).
         else:
           print(f"No data found for {name} {surname}")
 
-        input("Press Enter to continue...")
-        os.system("clear")
-
       elif userChoice3 == 2:
         password = "123456789"
         print("To do this you have to input a password")
@@ -182,18 +174,13 @@ If you want to save that data, input (1), if not, input (2).
         if (password == userPassword):
           filename.truncate(0)
           print("All the data was successfully deleted")
-          input("Press Enter to continue...")
-          os.system("clear")
         else:
           print("Incorrect password")
-          input("Press Enter to continue...")
-          os.system("clear")
-      elif userChoice3 == 1:
-        print("work in progress")
       else:
         print("Error: Invalid choice")
-        input("Press Enter to continue...")
-        os.system("clear")
+
+      input("Press Enter to continue...")
+      os.system("clear")
 
   def filterInstructor():
     with open("Instructors.txt", "r", encoding="utf-8") as file:
@@ -326,36 +313,16 @@ If you want to save that data, input (1), if not, input (2).
 
   def sortingInstructor(userChoice):
     # sorting by age from smallest to biggest
-    if userChoice == 1:
+    if userChoice in [1, 2, 3, 4]:
       os.system("clear")
-      print('People Are Sorted From smallest to biggest age')
-      print("------------------------------")
-      with open("Instructors.txt", 'r', encoding="utf8") as file:
-        lines = file.readlines()
-
-        people = []
-        current_person = {}
-        for line in lines:
-          line = line.strip()
-          if line.startswith('Name:'):
-            current_person['Name'] = line.split()[1]  # delete "Name: "
-          elif line.startswith('Surname:'):
-            current_person['Surname'] = line.split()[1]  # delete "Surname: "
-          elif line.startswith('Age:'):
-            current_person['Age'] = int(line.split()[1])  # delete "Age: "
-          elif line.startswith('------------------------------'):
-            people.append(current_person)
-            current_person = {}
-
-        sorted_people = sorted(people, key=lambda x: x['Age'])  # pēc kā sortēt
-
-        for person in sorted_people:
-          print(f"{person['Name']} {person['Surname']} {person['Age']}")
-
-    # sorting by age from biggest to smallest
-    elif userChoice == 2:
-      os.system("clear")
-      print('People Are Sorted From biggest to smallest age')
+      if userChoice == 1:
+        print('People Are Sorted From smallest to biggest age')
+      elif userChoice == 2:
+        print('People Are Sorted From biggest to smallest age')
+      elif userChoice == 3:
+        print('People Are Sorted By Surname A-Z')
+      elif userChoice == 4:
+        print('People Are Sorted By Surname Z-A')
       print("------------------------------")
       with open("Instructors.txt", 'r', encoding="utf8") as file:
         lines = file.readlines()
@@ -374,68 +341,16 @@ If you want to save that data, input (1), if not, input (2).
             people.append(current_person)
             current_person = {}
 
-        sorted_people = sorted(people, key=lambda x: x['Age'],
-                               reverse=True)  # pēc kā sortēt
-
-        for person in sorted_people:
-          print(f"{person['Name']} {person['Surname']} {person['Age']}"
-                )  # pēc kā sortēt
-
-    # sorting by name from A to Z
-    elif userChoice == 3:
-      os.system("clear")
-      print('People Are Sorted By Surname A-Z')
-      print("------------------------------")
-      with open("Instructors.txt", 'r', encoding="utf8") as file:
-        lines = file.readlines()
-
-        people = []
-        current_person = {}
-        for line in lines:
-          line = line.strip()
-          if line.startswith('Name:'):
-            current_person['Name'] = line.split()[1]
-          elif line.startswith('Surname:'):
-            current_person['Surname'] = line.split()[1]
-          elif line.startswith('Age:'):
-            current_person['Age'] = int(line.split()[1])
-          elif line.startswith('------------------------------'):
-            people.append(current_person)
-            current_person = {}
-
-        sorted_people = sorted(
-          people,
-          key=lambda x: x['Surname'],
-        )  # pēc kā sortēt
-
-        for person in sorted_people:
-          print(f"{person['Name']} {person['Surname']} {person['Age']}")
-
-    # sorting by name from Z to A
-    elif userChoice == 4:
-      os.system("clear")
-      print('People Are Sorted By Surname Z-A')
-      print("------------------------------")
-      with open("Instructors.txt", 'r', encoding="utf8") as file:
-        lines = file.readlines()
-
-        people = []
-        current_person = {}
-        for line in lines:
-          line = line.strip()
-          if line.startswith('Name:'):
-            current_person['Name'] = line.split()[1]
-          elif line.startswith('Surname:'):
-            current_person['Surname'] = line.split()[1]
-          elif line.startswith('Age:'):
-            current_person['Age'] = int(line.split()[1])
-          elif line.startswith('------------------------------'):
-            people.append(current_person)
-            current_person = {}
-
-        sorted_people = sorted(people,
-                               key=lambda x: x['Surname'],
-                               reverse=True)  # pēc kā sortēt
+        if userChoice == 1:
+          sorted_people = sorted(people, key=lambda x: x['Age'])
+        elif userChoice == 2:
+          sorted_people = sorted(people, key=lambda x: x['Age'], reverse=True)
+        elif userChoice == 3:
+          sorted_people = sorted(people, key=lambda x: x['Surname'])
+        elif userChoice == 4:
+          sorted_people = sorted(people,
+                                 key=lambda x: x['Surname'],
+                                 reverse=True)
 
         for person in sorted_people:
           print(f"{person['Name']} {person['Surname']} {person['Age']}")
