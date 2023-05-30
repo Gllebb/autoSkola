@@ -1,0 +1,35 @@
+ID: 1
+Maker: Toyota
+Model: Camry 3.5
+Release Year: 2021
+Car mileage: 24812
+Our school car mileage: 17666
+------------------------------------
+ID: 2
+Maker: Toyota
+Model: Corolla
+Release Year: 2004
+Car mileage: 276395
+Our school car mileage: 84032
+------------------------------------
+ID: 3
+Maker: Volkswagen
+Model: Golf 7
+Release Year: 2014
+Car mileage: 176591
+Our school car mileage: 74932
+------------------------------------
+ID: 4
+Maker: Volkswagen
+Model: Passat b6
+Release Year: 2007
+Car mileage: 254399
+Our school car mileage: 112984
+------------------------------------
+ID: 5
+Maker: Bmw
+Model: M5
+Release Year: 2019
+Car mileage: 4891
+Our school car mileage: 2349
+------------------------------------
