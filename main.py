@@ -1,5 +1,5 @@
 import os
-# from Car import *
+from Car import *
 from Instructor import *
 # from student import *
 
@@ -34,6 +34,10 @@ Select one of the options:
         print("Invalid input. Please enter a number between 1 and 7.")
     os.system("clear")
 
+    if userChoise == 7:
+      print("See you next time!")
+      break
+
     print('''
 What type of data this will be?
 ------------------------------------------
@@ -58,7 +62,7 @@ What type of data this will be?
       if userChoise1 == 1:
         Instructor.inputInstructor()
       elif userChoise1 == 2:
-        print("Work in progress...")
+        Cars.inputCar()
       elif userChoise1 == 3:
         print("Work in progress...")
       else:
@@ -70,7 +74,7 @@ What type of data this will be?
       if userChoise1 == 1:
         Instructor.printInstructors()
       elif userChoise1 == 2:
-        print("Work in progress...")
+        Cars.printCars()
       elif userChoise1 == 3:
         print("Work in progress...")
       else:
@@ -94,34 +98,42 @@ What type of data this will be?
         except ValueError:
           print("Invalid input. Please enter a number between 1 and 2.")
       os.system("clear")
-      if userChoise1 == 1:
-        if userChoise2 == 1:
-          print('''
+
+      print('''
 1. Serch by ID
 2. Search by Name and Surname 
 ------------------------------------------
 ''')
-          while True:
-            try:
-              userChoise3 = int(input("Input: "))
-              if (userChoise3 < 1 or userChoise3 > 2):
-                print("Number should be rounded between 1 and 2.")
-                continue
-              break
-            except ValueError:
-              print("Invalid input. Please enter a number between 1 and 2.")
-          os.system("clear")
+      while True:
+        try:
+          userChoise3 = int(input("Input: "))
+          if (userChoise3 < 1 or userChoise3 > 2):
+            print("Number should be rounded between 1 and 2.")
+            continue
+          break
+        except ValueError:
+          print("Invalid input. Please enter a number between 1 and 2.")
+      os.system("clear")
+      if userChoise1 == 1:
+        if userChoise2 == 1:
           if userChoise3 == 1:
             Instructor.deleteInstructor(1)
           if userChoise3 == 2:
             Instructor.deleteInstructor(3)
         elif userChoise2 == 2:
           Instructor.deleteInstructor(2)
-          os.system("clear")
         else:
           print("Something went wrong:(")
       elif userChoise1 == 2:
-        print("Work in progress...")
+        if userChoise2 == 1:
+          if userChoise3 == 1:
+            Cars.deleteCars(1)
+          if userChoise3 == 2:
+            Cars.deleteCars(3)
+        elif userChoise2 == 2:
+          Cars.deleteCars(2)
+        else:
+          print("Something went wrong:(")
       elif userChoise1 == 3:
         print("Work in progress...")
       else:
@@ -133,7 +145,7 @@ What type of data this will be?
       if userChoise1 == 1:
         Instructor.filterInstructor()
       elif userChoise1 == 2:
-        print("Work in progress...")
+        Cars.filterCars()
       elif userChoise1 == 3:
         print("Work in progress...")
       else:
@@ -148,18 +160,37 @@ What type of data this will be?
 2. Show at what age Instructor applied to his first job
 3. Show amounth of years to his next anniversary
 ''')
-      while True:
-        try:
-          userChoise2 = int(input("Input: "))
-          if (userChoise2 < 1 or userChoise2 > 3):
-            print("Number should be rounded between 1 and 3.")
-            continue
-          break
-        except ValueError:
-          print("Invalid input. Please enter a number between 1 and 3.")
-      os.system("clear")
-      Instructor.doMathInstructor(userChoise2)
+        while True:
+          try:
+            userChoise2 = int(input("Input: "))
+            if (userChoise2 < 1 or userChoise2 > 3):
+              print("Number should be rounded between 1 and 3.")
+              continue
+            break
+          except ValueError:
+            print("Invalid input. Please enter a number between 1 and 3.")
 
+        Instructor.doMathInstructor(userChoise2)
+
+      if userChoise1 == 2:
+        print('''
+1. Car mileage before our driving school
+2. Average cars mileague per year
+3. Show how old is car
+''')
+        while True:
+          try:
+            userChoise2 = int(input("Input: "))
+            if (userChoise2 < 1 or userChoise2 > 3):
+              print("Number should be rounded between 1 and 3.")
+              continue
+            break
+          except ValueError:
+            print("Invalid input. Please enter a number between 1 and 3.")
+
+        Cars.doMathCars(userChoise2)
+
+        os.system("clear")
     # new part
 
     elif (userChoise == 6):
@@ -181,12 +212,24 @@ What type of data this will be?
             print("Invalid input. Please enter a number between 1 and 4.")
         os.system("clear")
         Instructor.sortingInstructor(userChoise2)
-
-    # new part
-
-    elif (userChoise == 7):
-      print("See you next time!")
-      break
+      elif userChoise1 == 2:
+        print('''
+1. Sort cars from oldest to newest release year
+2. Sort cars From newest to oldest release year
+3. Sort cars by Model Name (A-Z)
+4. Sort cars by Model Name (Z-A)
+''')
+        while True:
+          try:
+            userChoise2 = int(input("Input: "))
+            if (userChoise2 < 1 or userChoise2 > 4):
+              print("Number should be rounded between 1 and 4.")
+              continue
+            break
+          except ValueError:
+            print("Invalid input. Please enter a number between 1 and 4.")
+        os.system("clear")
+        Cars.sortCars(userChoise2)
 
 
 MainMenu()
