@@ -129,15 +129,17 @@ If you want to save that data, input (1), if not, input (2).
   def deleteInstructor(userChoice3):
     os.system("clear")
     with open("Instructors.txt", "r+", encoding="utf-8") as filename:
-      data = filename.readlines()
       if userChoice3 == 1:
+        data = filename.readlines()
 
-        id_to_delete = input("Enter the ID of the instructor: ")
+        id_to_delete = input("Enter the ID of the instructor to delete: ")
         found = False
+        deleted_data = ""
 
         for i in range(len(data)):
           if data[i].startswith("ID: ") and data[i].strip().split(
               ": ")[1] == id_to_delete:
+            deleted_data = "".join(data[i - 1:i + 6])
             del data[i - 1:i + 6]
             found = True
             break
@@ -146,7 +148,9 @@ If you want to save that data, input (1), if not, input (2).
           filename.seek(0)
           filename.truncate()
           filename.writelines(data)
-          print(f"Instructor with ID {id_to_delete} deleted")
+          os.system("clear")
+          print(f"Instructor with ID {id_to_delete} deleted:")
+          print(deleted_data)
         else:
           print(f"No data found for ID {id_to_delete}")
 
@@ -191,21 +195,73 @@ If you want to save that data, input (1), if not, input (2).
         input("Press Enter to continue...")
         os.system("clear")
 
-  def searchOrFilterInstructor():
-    os.system("clear")
-    print("Work in progress!")
+  def filterInstructor():
+    with open("Instructors.txt", "r", encoding="utf-8") as file:
+      lines = file.readlines()
+
+      filtered_data = []
+
+      valid_filters = ['age', 'workExp', 'Our_workExp']
+      while True:
+        filter_data = input(
+          "Enter the data to filter by (age, workExp, Our_workExp): ")
+        if filter_data in valid_filters:
+          break
+        else:
+          print("Invalid input. Please try again.")
+      os.system("clear")
+
+      valid_comparison = ['<', '>', '=']
+      while True:
+        comparison_operator = input(
+          "Enter the comparison operator (<, >, =): ")
+        if comparison_operator in valid_comparison:
+          break
+        else:
+          print("Invalid input. Please try again.")
+      os.system("clear")
+
+      while True:
+        try:
+          value = int(input("Enter the value: "))
+          break
+        except ValueError:
+          print("Invalid input. Please enter a number")
+      os.system("clear")
+
+      for i in range(0, len(lines), 7):
+        data_value = int(lines[i + 3 +
+                               ['age', 'workExp', 'Our_workExp'
+                                ].index(filter_data)].split(': ')[1].strip())
+
+        if comparison_operator == "<" and data_value < value:
+          filtered_data.append(lines[i:i + 6])
+        elif comparison_operator == ">" and data_value > value:
+          filtered_data.append(lines[i:i + 6])
+        elif comparison_operator == "=" and data_value == value:
+          filtered_data.append(lines[i:i + 6])
+
+      if filtered_data:
+        print("\nFiltered Instructor Data:")
+        print("------------------------------")
+        for instructor in filtered_data:
+          print(''.join(instructor))
+          print("------------------------------")
+      else:
+        print("No data found matching the provided criteria.")
+
     input("Press Enter to continue...")
     os.system("clear")
 
   def doMathInstructor(userChoice):
+    os.system("clear")
     if userChoice == 1:
-      os.system("clear")
       with open("Instructors.txt", 'r', encoding="utf8") as file:
         lines = file.readlines()
 
       print("Work experience before applying to our job")
       print("-----------------------------------------------")
-      for i in range(0, len(lines), 6):
+      for i in range(1, len(lines), 7):
         name = lines[i].split(': ')[1].strip()
         surname = lines[i + 1].split(': ')[1].strip()
         work_experience = int(lines[i + 3].split(': ')[1].strip())
@@ -222,14 +278,12 @@ If you want to save that data, input (1), if not, input (2).
           print(f"{name} {surname}: {difference} years")
 
     if userChoice == 2:
-      os.system("clear")
-
       with open("Instructors.txt", 'r', encoding="utf8") as file:
         lines = file.readlines()
 
       print("Show at what age Instructor applied to his first job")
       print("-----------------------------------------------")
-      for i in range(0, len(lines), 6):
+      for i in range(1, len(lines), 7):
         name = lines[i].split(': ')[1].strip()
         surname = lines[i + 1].split(': ')[1].strip()
         age = int(lines[i + 2].split(': ')[1].strip())
@@ -240,13 +294,12 @@ If you want to save that data, input (1), if not, input (2).
         print(f"{name} {surname}: {difference} years")
 
     if userChoice == 3:
-      os.system("clear")
       with open("Instructors.txt", 'r', encoding="utf8") as file:
         lines = file.readlines()
 
       print("Show amount of years to his next anniversary")
       print("-----------------------------------------------")
-      for i in range(0, len(lines), 6):
+      for i in range(1, len(lines), 7):
         name = lines[i].split(': ')[1].strip()
         surname = lines[i + 1].split(': ')[1].strip()
         age = int(lines[i + 2].split(': ')[1].strip())
@@ -258,9 +311,14 @@ If you want to save that data, input (1), if not, input (2).
           print(
             f"{name} {surname}:Anniversary this year and in {yearsToNextAnniversary} years!"
           )
+        elif yearsToNextAnniversary == 1:
+          print(
+            f"{name} {surname}: {yearsToNextAnniversary} year to next anniversary!"
+          )
         else:
           print(
-            f"{name} {surname}: {yearsToNextAnniversary} to next anniversary!")
+            f"{name} {surname}: {yearsToNextAnniversary} years to next anniversary!"
+          )
 
     print()
     input("Press Enter to continue...")
