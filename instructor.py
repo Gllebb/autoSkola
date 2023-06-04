@@ -33,8 +33,8 @@ class Instructor:
     while True:
       try:
         age = int(input("Age (Instrucor has to be at least 18 years old): "))
-        if (age < 18):
-          print("Instructor can't be underaged")
+        if (age < 18 or age > 116):
+          print("Instructor age is incorrect")
           continue
         break
       except ValueError:
@@ -312,48 +312,61 @@ If you want to save that data, input (1), if not, input (2).
     os.system("clear")
 
   def sortingInstructor(userChoice):
-    # sorting by age from smallest to biggest
+    # Sorting options based on userChoice
     if userChoice in [1, 2, 3, 4]:
-      os.system("clear")
-      if userChoice == 1:
-        print('People Are Sorted From smallest to biggest age')
-      elif userChoice == 2:
-        print('People Are Sorted From biggest to smallest age')
-      elif userChoice == 3:
-        print('People Are Sorted By Surname A-Z')
-      elif userChoice == 4:
-        print('People Are Sorted By Surname Z-A')
-      print("------------------------------")
-      with open("Instructors.txt", 'r', encoding="utf8") as file:
-        lines = file.readlines()
-
-        people = []
-        current_person = {}
-        for line in lines:
-          line = line.strip()
-          if line.startswith('Name:'):
-            current_person['Name'] = line.split()[1]
-          elif line.startswith('Surname:'):
-            current_person['Surname'] = line.split()[1]
-          elif line.startswith('Age:'):
-            current_person['Age'] = int(line.split()[1])
-          elif line.startswith('------------------------------'):
-            people.append(current_person)
-            current_person = {}
-
+        os.system("clear")
         if userChoice == 1:
-          sorted_people = sorted(people, key=lambda x: x['Age'])
+            print('People Are Sorted From smallest to biggest age')
         elif userChoice == 2:
-          sorted_people = sorted(people, key=lambda x: x['Age'], reverse=True)
+            print('People Are Sorted From biggest to smallest age')
         elif userChoice == 3:
-          sorted_people = sorted(people, key=lambda x: x['Surname'])
+            print('People Are Sorted By Surname A-Z')
         elif userChoice == 4:
-          sorted_people = sorted(people,
-                                 key=lambda x: x['Surname'],
-                                 reverse=True)
+            print('People Are Sorted By Surname Z-A')
+        print("------------------------------")
+        
+        # Helper function to retrieve the 'Age' attribute from a person dictionary
+        def get_age(person):
+            return person['Age']
+        
+        def get_surname(person):
+            return person['Surname']
+        
+        with open("Instructors.txt", 'r', encoding="utf8") as file:
+            lines = file.readlines()
 
-        for person in sorted_people:
-          print(f"{person['Name']} {person['Surname']} {person['Age']}")
+            people = []  # List to store information about each person
+            current_person = {}  # Dictionary to hold details of an individual person
+            for line in lines:
+                line = line.strip()
+                if line.startswith('Name:'):
+                    # Extract the person's name and assign it to the 'Name' key in current_person dictionary
+                    current_person['Name'] = line.split()[1]
+                elif line.startswith('Surname:'):
+                    # Extract the person's surname and assign it to the 'Surname' key in current_person dictionary
+                    current_person['Surname'] = line.split()[1]
+                elif line.startswith('Age:'):
+                    # Extract the person's age, convert it to an integer, and assign it to the 'Age' key
+                    current_person['Age'] = int(line.split()[1])
+                elif line.startswith('------------------------------'):
+                    # When encountering the separator line, add the current_person to the people list
+                    people.append(current_person)
+                    current_person = {}  # Reset current_person for the next person's information
+
+            if userChoice == 1:
+                # Sort people based on age in ascending order
+                sorted_people = sorted(people, key=get_age)
+            elif userChoice == 2:
+                sorted_people = sorted(people, key=get_age, reverse=True)
+            elif userChoice == 3:
+                # Sort people based on surname in ascending order
+                sorted_people = sorted(people, key=get_surname)
+            elif userChoice == 4:
+                sorted_people = sorted(people, key=get_surname, reverse=True)
+
+            for person in sorted_people:
+                print(f"{person['Name']} {person['Surname']} {person['Age']}")
+
 
     print()
     input("Press Enter to continue...")
