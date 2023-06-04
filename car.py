@@ -292,58 +292,72 @@ If you want to save that data, input (1), if not, input (2).
         difference = year - releaseYear
 
         if difference == 0:
-          print(f"{maker} {model}: is a completely new car")
+          print(f"{maker} {model}: Is a completely new car")
         elif difference == 1:
-          print(f"{maker} {model}: is a {difference} year old car!")
+          print(f"{maker} {model}: Is a {difference} year old car!")
         else:
-          print(f"{maker} {model}: is a {difference} years old car!")
+          print(f"{maker} {model}: Is a {difference} years old car!")
 
     print()
     input("Press Enter to continue...")
     os.system("clear")
 
-  def sortCars(userChoice):
-
+def sortCars(userChoice):
+    # Sorting options based on userChoice
     if userChoice in [1, 2, 3, 4]:
-      os.system("clear")
-      if userChoice == 1:
-        print('Cars Sorted From oldest to newest release year')
-      elif userChoice == 2:
-        print('Cars Sorted From newest to oldest release year')
-      elif userChoice == 3:
-        print('Cars are Sorted By Model Name (A-Z)')
-      elif userChoice == 4:
-        print('Cars are Sorted By Model Name (Z-A)')
-        
-      print("------------------------------")
-      with open("Cars.txt", 'r', encoding="utf8") as file:
-        lines = file.readlines()
-
-        cars = []
-        current_car = {}
-        for line in lines:
-          line = line.strip()
-          if line.startswith('Maker:'):
-            current_car['Maker'] = line.split(":")[1].strip()
-          elif line.startswith('Model:'):
-            current_car['Model'] = line.split(":")[1].strip()
-          elif line.startswith('Release Year:'):
-            current_car['releaseYear'] = int(line.split(":")[1].strip())
-          elif line.startswith('------------------------------'):
-            cars.append(current_car)
-            current_car = {}
-
+        os.system("clear")
         if userChoice == 1:
-          sorted_cars = sorted(cars, key=lambda x: x['releaseYear'])
+            print('Cars Sorted From oldest to newest release year')
         elif userChoice == 2:
-          sorted_cars = sorted(cars, key=lambda x: x['releaseYear'], reverse=True)
+            print('Cars Sorted From newest to oldest release year')
         elif userChoice == 3:
-          sorted_cars = sorted(cars, key=lambda x: x['Model'])
+            print('Cars are Sorted By Model Name (A-Z)')
         elif userChoice == 4:
-          sorted_cars = sorted(cars, key=lambda x: x['Model'], reverse=True)
-          
-        for car in sorted_cars:
-          print(f"{car['Maker']} {car['Model']}: {car['releaseYear']}")
+            print('Cars are Sorted By Model Name (Z-A)')
+
+        print("------------------------------")
+        
+        # Helper function to retrieve the 'releaseYear' attribute from a car dictionary
+        def get_release_year(car):
+            return car['releaseYear']
+        
+        def get_model(car):
+            return car['Model']
+        
+        with open("Cars.txt", 'r', encoding="utf8") as file:
+            lines = file.readlines()
+
+            cars = []  # List to store information about each car
+            current_car = {}  # Dictionary to hold details of an individual car
+            for line in lines:
+                line = line.strip()
+                if line.startswith('Maker:'):
+                    # Extract the car maker and assign it to the 'Maker' key in current_car dictionary
+                    current_car['Maker'] = line.split(":")[1].strip()
+                elif line.startswith('Model:'):
+                    # Extract the car model and assign it to the 'Model' key in current_car dictionary
+                    current_car['Model'] = line.split(":")[1].strip()
+                elif line.startswith('Release Year:'):
+                    # Extract the car release year, convert it to an integer, and assign it to the 'releaseYear' key
+                    current_car['releaseYear'] = int(line.split(":")[1].strip())
+                elif line.startswith('------------------------------'):
+                    # When encountering the separator line, add the current_car to the cars list
+                    cars.append(current_car)
+                    current_car = {}  # Reset current_car for the next car's information
+
+            if userChoice == 1:
+                # Sort cars based on release year in ascending order
+                sorted_cars = sorted(cars, key=get_release_year)
+            elif userChoice == 2:
+                sorted_cars = sorted(cars, key=get_release_year, reverse=True)
+            elif userChoice == 3:
+                # Sort cars based on model name in ascending order
+                sorted_cars = sorted(cars, key=get_model)
+            elif userChoice == 4:
+                sorted_cars = sorted(cars, key=get_model, reverse=True)
+
+            for car in sorted_cars:
+                print(f"{car['Maker']} {car['Model']}: {car['releaseYear']}")
 
     print()
     input("Press Enter to continue...")
